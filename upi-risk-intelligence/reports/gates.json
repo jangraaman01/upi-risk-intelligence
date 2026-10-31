@@ -1,0 +1,61 @@
+{
+  "run_at": "2026-10-30T18:51:24+00:00",
+  "all_passed": true,
+  "gates": [
+    {
+      "gate": "hold-out PR-AUC >= 0.85",
+      "value": 0.945,
+      "passed": true
+    },
+    {
+      "gate": "time-series CV PR-AUC >= 0.80",
+      "value": 0.9411,
+      "passed": true
+    },
+    {
+      "gate": "beats logistic regression PR-AUC by >= 0.10",
+      "value": 0.254,
+      "passed": true
+    },
+    {
+      "gate": "fraud recall on flagged >= 0.90",
+      "value": 0.9883,
+      "passed": true
+    },
+    {
+      "gate": "flag rate <= 6% of traffic",
+      "value": 0.045,
+      "passed": true
+    },
+    {
+      "gate": "calibration Brier <= 1.10 x raw",
+      "value": 0.0032,
+      "passed": true
+    },
+    {
+      "gate": "max feature PSI < 0.25",
+      "value": 0.059,
+      "passed": true
+    },
+    {
+      "gate": "fraud rings recovered >= 75%",
+      "value": 34.0,
+      "passed": true
+    },
+    {
+      "gate": "conformal fraud coverage >= 85% (target 90%)",
+      "value": 0.8764,
+      "passed": true
+    },
+    {
+      "gate": "no significant segment disparity > 2x (genuine review/block rate)",
+      "value": 1.0,
+      "passed": true
+    },
+    {
+      "gate": "live scoring p99 (with SHAP) < 50 ms",
+      "value": 8.46,
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "dataset": {
+    "rows": 283726,
+    "duplicates_dropped": 1081,
+    "fraud": 473,
+    "fraud_rate": 0.00167,
+    "frauds_by_split": {
+      "test": 93,
+      "train": 342,
+      "val": 38
+    },
+    "hours": 48.0
+  },
+  "models": {
+    "LightGBM": {
+      "pr_auc": 0.8034,
+      "roc_auc": 0.9815,
+      "recall@0.05%_alerts": 0.376,
+      "recall@0.10%_alerts": 0.72,
+      "recall@0.50%_alerts": 0.839,
+      "value_recall@0.05%_alerts": 0.394,
+      "value_recall@0.10%_alerts": 0.66,
+      "value_recall@0.50%_alerts": 0.782
+    },
+    "Logistic regression": {
+      "pr_auc": 0.7496,
+      "roc_auc": 0.9776,
+      "recall@0.05%_alerts": 0.366,
+      "recall@0.10%_alerts": 0.699,
+      "recall@0.50%_alerts": 0.849,
+      "value_recall@0.05%_alerts": 0.197,
+      "value_recall@0.10%_alerts": 0.722,
+      "value_recall@0.50%_alerts": 0.781
+    },
+    "Isolation Forest (unsup.)": {
+      "pr_auc": 0.0482,
+      "roc_auc": 0.9454,
+      "recall@0.05%_alerts": 0.0,
+      "recall@0.10%_alerts": 0.011,
+      "recall@0.50%_alerts": 0.28,
+      "value_recall@0.05%_alerts": 0.0,
+      "value_recall@0.10%_alerts": 0.0,
+      "value_recall@0.50%_alerts": 0.124
+    }
+  },
+  "bootstrap_pr_auc_test": {
+    "LightGBM": {
+      "point": 0.8034,
+      "ci95": [
+        0.7228,
+        0.8825
+      ]
+    },
+    "Logistic regression": {
+      "point": 0.7496,
+      "ci95": [
+        0.6467,
+        0.8579
+      ]
+    },
+    "paired_diff_lgbm_minus_logreg": {
+      "point": 0.0538,
+      "ci95": [
+        0.0009,
+        0.1178
+      ]
+    },
+    "note": "row-level bootstrap (no account ids in this dataset, so clustering is unknown); n_fraud_test=93"
+  },
+  "split_comparison_lgbm_pr_auc": {
+    "random_stratified": 0.8608,
+    "chronological": 0.7921
+  },
+  "calibration": {
+    "brier_raw": 0.000384,
+    "brier_calibrated": 0.000382,
+    "brier_no_skill": 0.00131
+  },
+  "cost_based_alerting_test": {
+    "alert_cost=1": {
+      "alert_rate": 0.0065,
+      "recall": 0.849,
+      "precision": 0.171,
+      "loss_without_model": 10837.5,
+      "loss_with_model": 2824.1,
+      "savings_pct": 73.9
+    },
+    "alert_cost=5": {
+      "alert_rate": 0.00627,
+      "recall": 0.849,
+      "precision": 0.178,
+      "loss_without_model": 10837.5,
+      "loss_with_model": 4588.1,
+      "savings_pct": 57.7
+    },
+    "alert_cost=25": {
+      "alert_rate": 0.00094,
+      "recall": 0.699,
+      "precision": 0.97,
+      "loss_without_model": 10837.5,
+      "loss_with_model": 5371.1,
+      "savings_pct": 50.4
+    }
+  },
+  "top_features_mean_abs_shap": {
+    "V14": 0.5257,
+    "V4": 0.3993,
+    "V8": 0.3378,
+    "hour_sin": 0.2479,
+    "V24": 0.2324,
+    "V12": 0.2037,
+    "V22": 0.201,
+    "log_amount": 0.1944
+  }
+}

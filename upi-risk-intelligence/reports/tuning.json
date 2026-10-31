@@ -1,0 +1,25 @@
+{
+  "n_trials": 10,
+  "cv_pr_auc": {
+    "default_params": 0.9426,
+    "best_tuned": 0.9441
+  },
+  "best_params": {
+    "num_leaves": 50,
+    "learning_rate": 0.046841755182003945,
+    "n_estimators": 200,
+    "min_child_samples": 67,
+    "subsample": 0.8091624804113381,
+    "colsample_bytree": 0.7074429892197216,
+    "reg_lambda": 0.0010132287920147616
+  },
+  "test_pr_auc": {
+    "default": 0.9485,
+    "tuned": 0.9493
+  },
+  "test_paired_diff_tuned_minus_default_ci95": [
+    -0.0007,
+    0.0023
+  ],
+  "conclusion": "no statistically significant test gain (CV improvement did not transfer) -> keep defaults"
+}

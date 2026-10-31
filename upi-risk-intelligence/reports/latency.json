@@ -1,0 +1,22 @@
+{
+  "history_rows": 741063,
+  "live_score_only": {
+    "p50_ms": 2.94,
+    "p95_ms": 4.18,
+    "p99_ms": 4.9,
+    "mean_ms": 3.14
+  },
+  "live_with_shap": {
+    "p50_ms": 5.27,
+    "p95_ms": 7.17,
+    "p99_ms": 8.46,
+    "mean_ms": 5.47
+  },
+  "point_in_time_with_shap": {
+    "p50_ms": 71.69,
+    "p95_ms": 392.35,
+    "p99_ms": 449.19,
+    "mean_ms": 110.17
+  },
+  "note": "single CPU core, in-process (no HTTP overhead); live path = O(1) store lookups + one LightGBM predict"
+}

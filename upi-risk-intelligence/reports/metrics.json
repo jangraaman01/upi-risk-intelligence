@@ -1,0 +1,586 @@
+{
+  "model_version": "2.0.0",
+  "trained_at": "2026-10-30T07:34:03+00:00",
+  "data": {
+    "rows": 628037,
+    "raw_rows": 741063,
+    "users": 11993,
+    "merchants": 700,
+    "days": 91,
+    "fraud_rate": 0.0161,
+    "warmup_days": 14,
+    "test_fraud_rate": 0.0175
+  },
+  "models": {
+    "LightGBM": {
+      "roc_auc": 0.9978,
+      "pr_auc": 0.945
+    },
+    "LogisticRegression": {
+      "roc_auc": 0.9841,
+      "pr_auc": 0.691
+    },
+    "IsolationForest (unsupervised)": {
+      "roc_auc": 0.9618,
+      "pr_auc": 0.4426
+    }
+  },
+  "time_series_cv_pr_auc": {
+    "folds": [
+      0.9154,
+      0.9505,
+      0.9448,
+      0.9537
+    ],
+    "mean": 0.9411,
+    "std": 0.0152
+  },
+  "calibration": {
+    "brier_raw": 0.00326,
+    "brier_calibrated": 0.0032,
+    "reliability": {
+      "b": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "predicted": [
+        0.00011,
+        0.0028,
+        0.02395,
+        0.1086,
+        0.32568,
+        0.63736,
+        0.98073
+      ],
+      "observed": [
+        9e-05,
+        0.00472,
+        0.04652,
+        0.10686,
+        0.32127,
+        0.58774,
+        0.9842
+      ],
+      "n": [
+        144643,
+        6147,
+        1827,
+        1282,
+        663,
+        359,
+        2088
+      ]
+    }
+  },
+  "conformal": {
+    "params": {
+      "alpha_fraud": 0.1,
+      "alpha_genuine": 0.02,
+      "q_fraud": 0.7015665743587953,
+      "q_genuine": 0.01216612232078025,
+      "n_fraud": 706,
+      "n_genuine": 46397
+    },
+    "test": {
+      "coverage_fraud": 0.8764,
+      "coverage_genuine": 0.9789,
+      "share_uncertain": 0.02,
+      "share_confident_fraud": 0.0179,
+      "share_confident_genuine": 0.9621,
+      "fraud_in_uncertain": 0.0928,
+      "precision_confident_fraud": 0.8549
+    }
+  },
+  "thresholds": {
+    "step_up": 0.005410038014759029,
+    "review": 0.3807972393616025,
+    "block": 0.6014626982561115
+  },
+  "business_impact_test": {
+    "fraud_loss_without_model_inr": 16277779.37,
+    "total_cost_with_model_inr": 167304.19,
+    "net_savings_inr": 16110475.18,
+    "savings_pct": 99.0,
+    "flag_rate": 0.045,
+    "fraud_recall_flagged": 0.9883,
+    "precision_flagged": 0.384,
+    "cost_assumptions": {
+      "review_cost": 20.0,
+      "review_catch": 0.8,
+      "stepup_cost": 3.0,
+      "stepup_catch": 0.9,
+      "stepup_abandon": 0.02,
+      "abandon_cost": 50.0,
+      "block_fp_cost": 400.0
+    }
+  },
+  "test_decisions": {
+    "APPROVE": {
+      "count": 149949,
+      "fraud_in_bucket": 32
+    },
+    "STEP_UP_AUTH": {
+      "count": 4430,
+      "fraud_in_bucket": 370
+    },
+    "REVIEW": {
+      "count": 329,
+      "fraud_in_bucket": 151
+    },
+    "BLOCK_TRANSACTION": {
+      "count": 2301,
+      "fraud_in_bucket": 2190
+    }
+  },
+  "recall_by_fraud_type": {
+    "account_takeover": 0.995,
+    "collect_scam": 0.996,
+    "dormant_reactivation": 1.0,
+    "impossible_travel": 1.0,
+    "investment_scam": 1.0,
+    "mule_ring": 1.0,
+    "structuring": 1.0,
+    "velocity_attack": 0.966
+  },
+  "fraud_by_type_test": {
+    "account_takeover": 394,
+    "collect_scam": 274,
+    "dormant_reactivation": 62,
+    "impossible_travel": 80,
+    "investment_scam": 125,
+    "mule_ring": 598,
+    "structuring": 363,
+    "velocity_attack": 847
+  },
+  "mean_abs_shap": {
+    "new_receiver": 0.5855,
+    "hour": 0.5591,
+    "recv_acct_age_log": 0.339,
+    "merch_cat": 0.33,
+    "is_round": 0.2389,
+    "log_time_gap": 0.1832,
+    "sender_acct_age_log": 0.1598,
+    "log_amount": 0.1544,
+    "sender_new_rcv_24h": 0.1457,
+    "recv_cnt_24h": 0.1417,
+    "amount_ratio": 0.1105,
+    "amount_z": 0.092,
+    "geo_speed_log": 0.0865,
+    "dow": 0.0727,
+    "is_p2p": 0.07,
+    "sender_cnt_10m": 0.0679,
+    "recv_new_payers_24h": 0.0612,
+    "is_collect": 0.0532,
+    "recv_cnt_1h": 0.0429,
+    "new_device": 0.0324,
+    "sender_cnt_24h": 0.029,
+    "sender_cnt_1h": 0.0166,
+    "new_city": 0.0097,
+    "near_limit": 0.0061,
+    "is_night": 0.004
+  },
+  "drift_psi_train_vs_test": {
+    "log_amount": {
+      "psi": 0.0002,
+      "status": "stable"
+    },
+    "amount_z": {
+      "psi": 0.0037,
+      "status": "stable"
+    },
+    "amount_ratio": {
+      "psi": 0.0025,
+      "status": "stable"
+    },
+    "log_time_gap": {
+      "psi": 0.0069,
+      "status": "stable"
+    },
+    "sender_cnt_10m": {
+      "psi": 0.0,
+      "status": "stable"
+    },
+    "sender_cnt_1h": {
+      "psi": 0.0013,
+      "status": "stable"
+    },
+    "sender_cnt_24h": {
+      "psi": 0.011,
+      "status": "stable"
+    },
+    "recv_cnt_1h": {
+      "psi": 0.0002,
+      "status": "stable"
+    },
+    "recv_cnt_24h": {
+      "psi": 0.0005,
+      "status": "stable"
+    },
+    "hour": {
+      "psi": 0.0007,
+      "status": "stable"
+    },
+    "is_night": {
+      "psi": 0.0,
+      "status": "stable"
+    },
+    "new_receiver": {
+      "psi": 0.0592,
+      "status": "stable"
+    },
+    "new_device": {
+      "psi": 0.003,
+      "status": "stable"
+    },
+    "is_p2p": {
+      "psi": 0.0002,
+      "status": "stable"
+    },
+    "is_collect": {
+      "psi": 0.0,
+      "status": "stable"
+    },
+    "is_round": {
+      "psi": 0.0002,
+      "status": "stable"
+    },
+    "geo_speed_log": {
+      "psi": 0.005,
+      "status": "stable"
+    },
+    "new_city": {
+      "psi": 0.0002,
+      "status": "stable"
+    },
+    "near_limit": {
+      "psi": 0.0,
+      "status": "stable"
+    },
+    "sender_new_rcv_24h": {
+      "psi": 0.0437,
+      "status": "stable"
+    },
+    "recv_new_payers_24h": {
+      "psi": 0.0235,
+      "status": "stable"
+    },
+    "merch_cat": {
+      "psi": 0.0002,
+      "status": "stable"
+    },
+    "recv_acct_age_log": {
+      "psi": 0.0077,
+      "status": "stable"
+    },
+    "sender_acct_age_log": {
+      "psi": 0.0108,
+      "status": "stable"
+    },
+    "dow": {
+      "psi": 0.0175,
+      "status": "stable"
+    }
+  },
+  "rings": {
+    "true_rings": 36,
+    "rings_recovered": 34,
+    "detected_clusters": 35,
+    "node_precision": 1.0,
+    "node_recall": 0.949
+  },
+  "mule_ranking": {
+    "k": 20,
+    "precision_at_k": 0.95
+  },
+  "fairness": {
+    "age_band": {
+      "segments": {
+        "18-29": {
+          "n": 32697,
+          "genuine_review_block_rate": 0.00182,
+          "rate_ci95": [
+            0.00141,
+            0.00235
+          ],
+          "genuine_flagged": 59,
+          "genuine_stepup_rate": 0.02823,
+          "fraud_recall": 0.986,
+          "n_fraud": 356
+        },
+        "30-44": {
+          "n": 42079,
+          "genuine_review_block_rate": 0.00179,
+          "rate_ci95": [
+            0.00143,
+            0.00225
+          ],
+          "genuine_flagged": 74,
+          "genuine_stepup_rate": 0.02776,
+          "fraud_recall": 0.987,
+          "n_fraud": 835
+        },
+        "45-59": {
+          "n": 39099,
+          "genuine_review_block_rate": 0.00192,
+          "rate_ci95": [
+            0.00153,
+            0.00242
+          ],
+          "genuine_flagged": 74,
+          "genuine_stepup_rate": 0.02487,
+          "fraud_recall": 0.989,
+          "n_fraud": 654
+        },
+        "60+": {
+          "n": 43134,
+          "genuine_review_block_rate": 0.00194,
+          "rate_ci95": [
+            0.00156,
+            0.00241
+          ],
+          "genuine_flagged": 82,
+          "genuine_stepup_rate": 0.02477,
+          "fraud_recall": 0.99,
+          "n_fraud": 898
+        }
+      },
+      "adverse_impact_ratio": 1.08,
+      "max_gap_pp": 0.015,
+      "homogeneity_p_value": 0.9525,
+      "significant": false
+    },
+    "home_city": {
+      "segments": {
+        "Ahmedabad": {
+          "n": 9776,
+          "genuine_review_block_rate": 0.00104,
+          "rate_ci95": [
+            0.00057,
+            0.00192
+          ],
+          "genuine_flagged": 10,
+          "genuine_stepup_rate": 0.02166,
+          "fraud_recall": 0.977,
+          "n_fraud": 172
+        },
+        "Bengaluru": {
+          "n": 19975,
+          "genuine_review_block_rate": 0.00177,
+          "rate_ci95": [
+            0.00128,
+            0.00247
+          ],
+          "genuine_flagged": 35,
+          "genuine_stepup_rate": 0.0255,
+          "fraud_recall": 0.992,
+          "n_fraud": 247
+        },
+        "Chennai": {
+          "n": 14490,
+          "genuine_review_block_rate": 0.00218,
+          "rate_ci95": [
+            0.00153,
+            0.00309
+          ],
+          "genuine_flagged": 31,
+          "genuine_stepup_rate": 0.02695,
+          "fraud_recall": 0.983,
+          "n_fraud": 239
+        },
+        "Delhi": {
+          "n": 25973,
+          "genuine_review_block_rate": 0.00165,
+          "rate_ci95": [
+            0.00122,
+            0.00223
+          ],
+          "genuine_flagged": 42,
+          "genuine_stepup_rate": 0.0289,
+          "fraud_recall": 0.994,
+          "n_fraud": 473
+        },
+        "Guwahati": {
+          "n": 3684,
+          "genuine_review_block_rate": 0.00305,
+          "rate_ci95": [
+            0.00171,
+            0.00546
+          ],
+          "genuine_flagged": 11,
+          "genuine_stepup_rate": 0.02775,
+          "fraud_recall": 0.988,
+          "n_fraud": 80
+        },
+        "Hyderabad": {
+          "n": 14470,
+          "genuine_review_block_rate": 0.00183,
+          "rate_ci95": [
+            0.00125,
+            0.00268
+          ],
+          "genuine_flagged": 26,
+          "genuine_stepup_rate": 0.02686,
+          "fraud_recall": 0.986,
+          "n_fraud": 286
+        },
+        "Jaipur": {
+          "n": 8219,
+          "genuine_review_block_rate": 0.00234,
+          "rate_ci95": [
+            0.0015,
+            0.00365
+          ],
+          "genuine_flagged": 19,
+          "genuine_stepup_rate": 0.02858,
+          "fraud_recall": 0.98,
+          "n_fraud": 102
+        },
+        "Kochi": {
+          "n": 4951,
+          "genuine_review_block_rate": 0.00205,
+          "rate_ci95": [
+            0.00111,
+            0.00376
+          ],
+          "genuine_flagged": 10,
+          "genuine_stepup_rate": 0.0219,
+          "fraud_recall": 1.0,
+          "n_fraud": 65
+        },
+        "Kolkata": {
+          "n": 11359,
+          "genuine_review_block_rate": 0.0018,
+          "rate_ci95": [
+            0.00117,
+            0.00278
+          ],
+          "genuine_flagged": 20,
+          "genuine_stepup_rate": 0.02492,
+          "fraud_recall": 0.984,
+          "n_fraud": 245
+        },
+        "Lucknow": {
+          "n": 7045,
+          "genuine_review_block_rate": 0.00058,
+          "rate_ci95": [
+            0.00023,
+            0.00149
+          ],
+          "genuine_flagged": 4,
+          "genuine_stepup_rate": 0.02933,
+          "fraud_recall": 0.987,
+          "n_fraud": 159
+        },
+        "Mumbai": {
+          "n": 25469,
+          "genuine_review_block_rate": 0.0024,
+          "rate_ci95": [
+            0.00187,
+            0.00309
+          ],
+          "genuine_flagged": 60,
+          "genuine_stepup_rate": 0.02412,
+          "fraud_recall": 0.99,
+          "n_fraud": 508
+        },
+        "Pune": {
+          "n": 11598,
+          "genuine_review_block_rate": 0.00184,
+          "rate_ci95": [
+            0.0012,
+            0.00281
+          ],
+          "genuine_flagged": 21,
+          "genuine_stepup_rate": 0.02861,
+          "fraud_recall": 0.994,
+          "n_fraud": 167
+        }
+      },
+      "adverse_impact_ratio": 5.26,
+      "max_gap_pp": 0.247,
+      "homogeneity_p_value": 0.0663,
+      "significant": false
+    },
+    "tenure": {
+      "segments": {
+        "established": {
+          "n": 63338,
+          "genuine_review_block_rate": 0.00161,
+          "rate_ci95": [
+            0.00132,
+            0.00196
+          ],
+          "genuine_flagged": 100,
+          "genuine_stepup_rate": 0.02863,
+          "fraud_recall": 0.992,
+          "n_fraud": 1245
+        },
+        "new (<10 prior txns)": {
+          "n": 93671,
+          "genuine_review_block_rate": 0.00205,
+          "rate_ci95": [
+            0.00178,
+            0.00236
+          ],
+          "genuine_flagged": 189,
+          "genuine_stepup_rate": 0.02476,
+          "fraud_recall": 0.985,
+          "n_fraud": 1498
+        }
+      },
+      "adverse_impact_ratio": 1.27,
+      "max_gap_pp": 0.044,
+      "homogeneity_p_value": 0.0574,
+      "significant": false
+    },
+    "upi_app": {
+      "segments": {
+        "app_a": {
+          "n": 78252,
+          "genuine_review_block_rate": 0.00189,
+          "rate_ci95": [
+            0.0016,
+            0.00222
+          ],
+          "genuine_flagged": 145,
+          "genuine_stepup_rate": 0.02701,
+          "fraud_recall": 0.99,
+          "n_fraud": 1430
+        },
+        "app_b": {
+          "n": 55910,
+          "genuine_review_block_rate": 0.00189,
+          "rate_ci95": [
+            0.00156,
+            0.00229
+          ],
+          "genuine_flagged": 104,
+          "genuine_stepup_rate": 0.02656,
+          "fraud_recall": 0.988,
+          "n_fraud": 938
+        },
+        "app_c": {
+          "n": 22847,
+          "genuine_review_block_rate": 0.00178,
+          "rate_ci95": [
+            0.00131,
+            0.00242
+          ],
+          "genuine_flagged": 40,
+          "genuine_stepup_rate": 0.02336,
+          "fraud_recall": 0.984,
+          "n_fraud": 375
+        }
+      },
+      "adverse_impact_ratio": 1.06,
+      "max_gap_pp": 0.011,
+      "homogeneity_p_value": 0.9403,
+      "significant": false
+    }
+  }
+}

@@ -1,0 +1,19 @@
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    environment:
+      - UPI_API_KEY=${UPI_API_KEY:-}
+      - UPI_AUDIT_DB=/app/audit/audit.db
+      - UPI_CASES_DB=/app/audit/cases.db
+    volumes: ["audit:/app/audit"]
+  dashboard:
+    build: .
+    command: streamlit run dashboard/dashboard.py --server.port 8501 --server.address 0.0.0.0
+    environment:
+      - UPI_AUDIT_DB=/app/audit/audit.db
+      - UPI_CASES_DB=/app/audit/cases.db
+    volumes: ["audit:/app/audit"]
+    ports: ["8501:8501"]
+volumes:
+  audit:

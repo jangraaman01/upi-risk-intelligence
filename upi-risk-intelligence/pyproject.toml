@@ -1,0 +1,17 @@
+[project]
+name = "upi-risk-intelligence"
+version = "1.1.0"
+description = "Behavioural fraud detection for UPI payments: LightGBM, SHAP, graph analytics, cost-optimal decisions"
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 380
+extend-exclude = ["notebooks"]
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["E701", "E702", "E731", "E741", "E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+filterwarnings = ["ignore::DeprecationWarning"]
